@@ -1,0 +1,5 @@
+function OpenResetPasswordDialog() {
+	$('<div></div>').dialog({
+		title : 'Mot de passe oubli&eacute;',
+	});
+}

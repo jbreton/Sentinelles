@@ -1,0 +1,16 @@
+User-agent: slurp
+Disallow: *
+
+User-agent: *
+
+Disallow: /cgi-bin
+Disallow: /doc
+Disallow: /forum
+Disallow: /forum2
+Disallow: /images
+Disallow: /news
+Disallow: /newsletter
+Disallow: /passe
+Disallow: /photos
+Disallow: /stat
+Disallow: /test

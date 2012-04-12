@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+body
+{
+   margin-top: 25px;
+   text-align: center;
+}
+#languageBar
+{
+   margin-bottom: 10px;
+}

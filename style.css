@@ -1,0 +1,47 @@
+body {
+	background: #ffe49b;
+	font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+	color: black;
+}
+h1  { color: red; font-weight: bold; font-size: 12pt; line-height: 14pt; text-align: left; margin-top: 0px; padding-top: 0px }
+.textes { color: black; font-size: 9pt; line-height: 12pt; text-align: justify; }
+.textesCellule{ color: black; font-size: 9pt; line-height: 12pt; }
+.textesphotos { color: black; font-size: 8pt; line-height: 10pt; text-align: justify; }
+.textesphotosHisto { color: black; font-size: 8pt; line-height: 10pt; }
+.textesgras { color: black; font-size: 9pt; font-weight: bold; line-height: 11pt; text-align: justify; }
+.menu { color: #FFFFFF; font-size: 9pt; line-height: 14.7pt; text-align: left; letter-spacing: 0.5pt; }
+.menugras { color: #FFFFFF; font-size: 9pt; font-weight: bold; font-style: normal; line-height: 11pt; text-align: left; letter-spacing: .5pt; }
+.menusnoir { color: black; font-size: 9pt; font-weight: bold; font-style: normal; line-height: 12pt; text-align: left; letter-spacing: 1pt; }
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFE49B;
+}
+a:hover {
+	text-decoration: underline;
+	color: #000000;
+}
+a:active {
+	text-decoration: none;
+	color: #000000;
+}
+a {
+	font-size: 9pt;
+}
+.button {
+	border: 1px solid black;
+        background-color: red;
+        color: black;
+}
+.dialogue {
+	font-size: 14px;
+}
+#main      { background: url(images/menu.gif) repeat-y left top; }
+#col_gauche      { background: url(images/menu.gif) repeat-y left top; float: left; clear: left; width: 185px }
+#entete   { float: left; width: 839px; height: 352px }
+#contenu   { background: url(images/texte.gif) repeat-y; text-align: left; float: left; padding-top: 20px; padding-right: 50px; padding-left: 20px; width: 769px; min-height: 750px; }
+#bas    { font-size: 9px; background: #ffe49b url(images/bas.gif) no-repeat; clear: both; padding-top: 50px; width: 1024px }
+#calendrier { text-align: left; float: left; position: relative; z-index: 1; top: -135px; left: 20px }
