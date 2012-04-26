@@ -4,14 +4,26 @@ class Calendrier {
         private $mysql;
         private $mois;
         private $annee;
-        private $type;
+		private $annees = array();
 
-	public function __construct(MySQL $mysql, $type, $annee, $mois) {
+	public function __construct(MySQL $mysql, $annee, $mois) {
 	     $this->mysql = $mysql;
              $this->type = $type;
              $this->annee = $annee;
+			 
+			$query = 'SELECT DISTINCT YEAR(date_activite) FROM activite;';
+			$result = $mysql->Query($query);
+			while($row = $result->fetch_row()) {
+				$this->annees[] = $row[0];
+			}
+			$result->close();
+			
+			if(!$this->annee) {
+				$this->annee = $this->annees[count($this->annees)-1];
+			}
+			 
              if(!$mois) {
-	         $query = 'SELECT MIN(MONTH(date_activite)) FROM activite WHERE type_activite = "'.$type.'" AND YEAR(date_activite) = "'.$this->annee.'" AND MONTH(date_activite) >= MONTH(NOW());';
+	         $query = 'SELECT MIN(MONTH(date_activite)) FROM activite WHERE YEAR(date_activite) = "'.$this->annee.'" AND MONTH(date_activite) >= MONTH(NOW());';
                  $result = $mysql->Query($query);
                  $row = $result->fetch_row();
                  $this->mois = $row[0];
@@ -64,10 +76,10 @@ class Calendrier {
 	}
 
 	public function AfficherMois() {
-                echo '<p>Voir les '.($this->type == 'ENCADREMENT' ? 'Encadrements' : 'Sorties').' du mois de <select id="selection_mois">';
+                echo '<p>Voir les activit&eacute;s du mois de <select id="selection_mois">';
 
                 $mois = array();
-		$query = 'SELECT DISTINCT MONTH(date_activite) AS mois FROM activite WHERE type_activite = "'.$this->type.'" AND YEAR(date_activite) = "'.$this->annee.'" ORDER BY MONTH(date_activite);';
+		$query = 'SELECT DISTINCT MONTH(date_activite) AS mois FROM activite WHERE YEAR(date_activite) = "'.$this->annee.'" ORDER BY MONTH(date_activite);';
 		$result = $this->mysql->Query($query);
 		while($row = $result->fetch_assoc()) {	
 		    $mois[] = (int)$row['mois'];
@@ -83,24 +95,15 @@ class Calendrier {
 
                 echo '</select></p><script type="text/javascript">
 			$("#selection_mois").change(function() {
-				location = "/calendrier_'.($this->type == 'ENCADREMENT' ? 'encadrements' : 'sorties').'.php?m="+this.value;
+				location = "/calendrier_encadrements.php?y='.$this->annee.'&m="+this.value;
 			});
 		</script>';
 	}
 
         public function Afficher() {
-             echo '<p align="center"><font size="5" face="Arial" color="#ed1b24">'.($this->type == 'ENCADREMENT' ? 'Encadrements' : 'Sorties').' de '.$this->NomMois($this->mois).' '.$this->annee.'</font></p>';
+             echo '<p align="center"><font size="5" face="Arial" color="#ed1b24">Activit&eacute;s de '.$this->NomMois($this->mois).' '.$this->annee.'</font></p>';
 
              $this->AfficherMois();
-
-             if($this->type == "SORTIE") {
-	          echo '<p style="font-size:12px;">Le d&eacute;part pour les sorties du mardi se fait &agrave; 18h30.<br /><br />
-
-Le d&eacute;part pour les sorties du samedi se fait &agrave; 10h00 pour les mois de 
-mai et de septembre et &agrave; 9h00 pour les mois de juin, juillet et ao&ucirc;t.
-
-</p>';
-             }
 
 	     echo '<table width="100%" cellspacing="0" cellpadding="4" bordercolor="#ffcc33" border="1"><thead><tr>
 <td width="14%" valign="middle" bgcolor="#000000" align="center" style="color: #ffffff;">Dimanche</td>
@@ -155,13 +158,19 @@ mai et de septembre et &agrave; 9h00 pour les mois de juin, juillet et ao&ucirc;
                  }
              }
 
-             echo '</tbody></table><br /><a href="encadrements2010.php"><font color="#FF0000">Cliquez ici</font></a> pour voir le calendrier de 2010.';
+             echo '</tbody></table>';
+			 
+			 echo '<br /><span>Voir les activit&eacute;s de </span><select onchange="location = \'/calendrier_encadrements.php?y=\'+this.value;">';
+			 foreach($this->annees as $a_annee) { 
+				 echo '<option '.($a_annee == $this->annee ? 'selected="selected"' : '').' value="'.$a_annee.'">'.$a_annee.'</option>';
+			 }
+			 echo '</select><br /><a href="encadrements2010.php"><font color="#FF0000">Cliquez ici</font></a> pour voir le calendrier de 2010.';
         }
 
         public function GetActivites($jour) {
 		$html = '';
         	$i = 0;
-        	$query = 'SELECT id_activite, nom_activite FROM activite WHERE type_activite = "'.$this->type.'" AND date_activite = "'.$this->annee.'-'.str_pad($this->mois, 2, '0', STR_PAD_LEFT).'-'.str_pad($jour, 2, '0', STR_PAD_LEFT).'" ORDER BY nom_activite;';
+        	$query = 'SELECT id_activite, nom_activite FROM activite WHERE date_activite = "'.$this->annee.'-'.str_pad($this->mois, 2, '0', STR_PAD_LEFT).'-'.str_pad($jour, 2, '0', STR_PAD_LEFT).'" ORDER BY nom_activite;';
 		$result = $this->mysql->Query($query);
 		if($row = $result->fetch_assoc()) {
 			do {

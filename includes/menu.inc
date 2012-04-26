@@ -32,8 +32,7 @@ if($membre && $membre->EstCA()) {
    echo '<p class="menugras"><span class="menugras">SECTION DU CA</span><br />
 <a href="liste_membres.php">&gt; Liste des membres</a><br />
 <a href="liste_nouveaux_membres.php">&gt; Nouveaux membres</a><br />
-<a href="liste_encadrements.php">&gt; Liste des encadrements</a><br />
-<a href="liste_sorties.php">&gt; Liste des sorties</a><br />
+<a href="liste_encadrements.php">&gt; Liste des activit&eacute;s</a><br />
 <a href="javascript:alert(\'En construction\');">&gt; Administration du site</a><br />
 <a href="http://www.lessentinelles.com/membreca/index.html">&gt; Documents</a>
 </p>';
@@ -54,14 +53,10 @@ if($membre && $membre->EstCA()) {
 									<a href="commanditaires.php">&gt; Commanditaires</a><br>
 									<a href="realisations.php">&gt; R&eacute;alisations</a><br>
 									<a href="webmestre.php">&gt; Webmestre</a></span>
-								<p><img src="images/picto_mois.gif" alt="" width="45" height="45" border="0"><br>
-									<span class="menugras">LES ACTIVIT&Eacute;S<br>
-									</span><span class="menu"><a href="calendrier_encadrements.php">&gt; Encadrements</a><br>
-									</span><span class="menu"><a href="sorties.php">&gt; Sorties<br>
-										</a></span><span class="menugras"><a href="http://www.lessentinelles.com/dotclear/index.php" target="_blank">LE BLOG <img src="images/bulle_blog.gif" alt="" width="42" height="43" border="0"><br>
-												DES MEMBRES<br>
-										</a></span><a href="http://www.lessentinelles.com/dotclear/index.php?pages/Anecdotes-de-la-saison" target="_blank"><span class="menu">&gt; </span><span class="menugras">Anecdotes </span></a><a href="http://www.lessentinelles.com/dotclear/index.php?pages/March%C3%A9-aux-puces" target="_blank"><span class="menugras"><br>
-										</span><span class="menu">&gt; </span><span class="menugras">March&eacute; aux puces</span></a></p></p>
+								<p onclick="location = '/calendrier_encadrements.php';" style="cursor: pointer;"><img src="images/picto_mois.gif" alt="" width="45" height="45" border="0" style="cursor: pointer;"><br>
+									<span class="menugras"><a href="calendrier_encadrements.php" style="cursor: pointer;">LES ACTIVIT&Eacute;S</a><br>
+									</span>
+								</p>
 							</div>
 							<div class="menugras">
 								<p class="menugras"><span class="menugras"><a href="http://www.picasaweb.google.ca/lessentinelles2008" target="_blank">LA GALERIE<br>

@@ -47,4 +47,3 @@
 </div>
 </div>
 --> 
-<div style="margin-top: -25px; margin-left: 10px;"><a href="calendrier_encadrements.php" style="font-weight: bold;">&gt; Encadrements</a></div>

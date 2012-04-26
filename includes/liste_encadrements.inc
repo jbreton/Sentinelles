@@ -5,10 +5,24 @@ if(!$membre || !$membre->EstCA()) {
         return false;
 }
 
-$query = 'SELECT id_activite, nom_activite, date_activite FROM activite WHERE type_activite = "ENCADREMENT" order by date_activite;';
+$years = array();
+	$query = 'SELECT DISTINCT YEAR(date_activite) FROM activite;';
+$result = $session->MySQL()->Query($query);
+while($row = $result->fetch_row()) {
+	$years[] = $row[0];
+}
+$result->close();
+
+$year = (int)$_GET['y'];
+if(!in_array($year, $years)) {
+	$year = $years[count($years)-1];
+}
+
+$query = 'SELECT id_activite, nom_activite, date_activite FROM activite WHERE YEAR(date_activite) = "'.(int)$year.'" ORDER BY date_activite;';
 $result = $session->MySQL()->Query($query);
 ?>
-<input type="button" value="Ajouter un encadrement" onclick="location = '/fiche_encadrement_edit.php';" /><br /><br />
+<span>Voir les activit&eacute;s de </span><select id="annee_activite" onchange="location = '/liste_encadrements.php?y='+this.value;"><?php foreach($years as $o_year) { echo '<option '.($year == $o_year ? 'selected="selected"' : '').' value="'.$o_year.'">'.$o_year.'</option>'; } ?></select><br /><br />
+<input type="button" value="Ajouter une activit&eacute;" onclick="location = '/fiche_encadrement_edit.php';" /><br /><br />
 <style>
 
 tbody.liste tr {
@@ -20,7 +34,7 @@ tbody.liste tr:hover {
 
 </style>
 <table style="width: 100%;">
-<thead><tr><th style="width: 50%;">Encadrement</th><th style="width: 50%;">Date</th></tr></thead>
+<thead><tr><th style="width: 50%;">Activit&eacute;s</th><th style="width: 50%;">Date</th></tr></thead>
 <tbody class="liste">
 <?php
 
