@@ -12,6 +12,10 @@
 								<div class="menugras">
 									<p class="menu"><span class="menugras"><span class="menugras"><a href="index.php">ACCUEIL</a></span></span></p>
 								</div>
+								<p onclick="location = '/calendrier_encadrements.php';" style="cursor: pointer;"><img src="images/picto_mois.gif" alt="" width="45" height="45" border="0" style="cursor: pointer;"><br>
+									<span class="menugras"><a href="calendrier_encadrements.php" style="cursor: pointer;">LES ACTIVIT&Eacute;S</a><br>
+									</span>
+								</p>
 							</div>
 
  <?php 
@@ -53,10 +57,7 @@ if($membre && $membre->EstCA()) {
 									<a href="commanditaires.php">&gt; Commanditaires</a><br>
 									<a href="realisations.php">&gt; R&eacute;alisations</a><br>
 									<a href="webmestre.php">&gt; Webmestre</a></span>
-								<p onclick="location = '/calendrier_encadrements.php';" style="cursor: pointer;"><img src="images/picto_mois.gif" alt="" width="45" height="45" border="0" style="cursor: pointer;"><br>
-									<span class="menugras"><a href="calendrier_encadrements.php" style="cursor: pointer;">LES ACTIVIT&Eacute;S</a><br>
-									</span>
-								</p>
+								
 							</div>
 							<div class="menugras">
 								<p class="menugras"><span class="menugras"><a href="http://www.picasaweb.google.ca/lessentinelles2008" target="_blank">LA GALERIE<br>
