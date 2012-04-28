@@ -90,27 +90,21 @@ theme_advanced_resizing : true,
 
 // Skin options
 skin : "o2k7",
-skin_variant : "silver",
+skin_variant : "silver"
 
 });
 </script>
-<form method="POST">
+<form method="POST" action="fiche_encadrement_edit.php">
 <?php if($row) echo '<input type="hidden" name="id_activite" value="'.(int)$row['id_activite'].'" />'; ?>
 <table>
-<tbody>
-
-<tr><td>Nom de l'encadrement :</td><td><input type="text" id="nom_activite" name="nom_activite" value="<?php echo htmlentities($row['nom_activite']); ?>" size="35" /><select id="genre" name="genre"><option value="M" <?php echo ($row['genre_nom'] == 'M' ? 'selected="selected"' : ''); ?>>M</option><option value="F" <?php echo ($row['genre_nom'] == 'F' ? 'selected="selected"' : ''); ?>>F</option></select></td></tr>
+	<tbody>
+		<tr><td>Nom de l'encadrement :</td><td><input type="text" id="nom_activite" name="nom_activite" value="<?php echo htmlentities($row['nom_activite']); ?>" size="35" /><select id="genre" name="genre"><option value="M" <?php echo ($row['genre_nom'] == 'M' ? 'selected="selected"' : ''); ?>>M</option><option value="F" <?php echo ($row['genre_nom'] == 'F' ? 'selected="selected"' : ''); ?>>F</option></select></td></tr>
 <tr><td>Organisme :</td><td><input type="text" id="organisme" name="organisme" size="35" value="<?php echo htmlentities($row['organisme']); ?>" /></td></tr>
 <tr><td>Site web de l'organisme :</td><td><input id="lien_organisme" name="lien_organisme" value="<?php echo htmlentities($row['lien_organisme']); ?>" type="text" size="50" /><input type="button" value="Tester le lien" onclick="window.open(document.getElementById('lien_organisme').value, '_blank');" /></td></tr>
 <tr><td>Date :</td><td><input type="text" id="date_activite" name="date_activite" value="<?php echo $row['date_activite']; ?>" size="15" /><script type="text/javascript">$(function(){ var min = new Date(); min.setDate(1); min.setMonth(0); var max = new Date(); max.setMonth(11); max.setDate(31); $("#date_activite").datepicker({dateFormat : "yy-mm-dd", minDate : min, maxDate : max, defaultDate : "<?php echo $row['date_activite']; ?>", monthNames: ['Janvier','F&eacute;vrier','Mars','Avril','Mai','Juin','Juillet','Ao&ucirc;t','Septembre','Octobre','Novembre','Decembre'], dayNamesMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa']}); });</script></td></tr>
 <tr><td style="vertical-align: top;">Description :</td><td><textarea rows="3" cols="35" id="description" name="description"><?php echo htmlentities($row['description']); ?></textarea></td></tr>
 <tr><td colspan="2"><br /></td></tr>
-<!--<tr><td colspan="2">Personne contact :</td></tr>
-<tr><td>Nom :</td><td><input type="text" value="Jean-Pierre Laforest" size="30" id="nom_contact" name="nom_contact" /></td></tr>
-<tr><td>Telephone :</td><td><input type="text" value="418 555-5555" size="15" id="tel_contact" name="tel_contact" /></td></tr>
-<tr><td>Courriel :</td><td><input type="text" value="jp.laforest@videotron.ca" size="35" id="courriel_contact" name="courriel_contact" /></td></tr>-->
 <tr><td colspan="2"><br /></td></tr>
-
 <tr><td>Lieu de depart :</td><td><input type="text" size="50" id="lieu_depart" name="lieu_depart" value="<?php echo htmlentities($row['lieu_depart']); ?>" /></td></tr>
 <tr><td>Lien du lieu de depart :</td><td><input type="text" id="lien_lieu_depart" name="lien_lieu_depart" value="<?php echo htmlentities($row['lien_lieu_depart']); ?>" size="50" /><input type="button" value="Tester le lien" onclick="window.open(document.getElementById('lien_lieu_depart').value, '_blank');" /><td></tr>
 
