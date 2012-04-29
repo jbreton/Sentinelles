@@ -30,4 +30,6 @@ while($sub_row = $result->fetch_assoc()) {
 }
 $result->close();
 
-echo '</tbody></table></p>';
+echo '</tbody></table></p>
+	
+<p><input type="button" value="Annuler l\'envoi" onclick="location = \'annuler_envoi.php?id='.$row['id_courriel'].'\';" /></p>';

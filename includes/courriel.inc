@@ -9,7 +9,7 @@ if($_POST['nom']) {
 	if($_POST['id_courriel'] && $_POST['id_courriel'] == $_GET['id']) {
 		$query = 'UPDATE courriel SET nom = ?, objet = ?, message = ?, inclure_lien = ? WHERE id_courriel = ?';
 		$stmt = $session->MySQL()->Prepare($query);
-		$stmt->bind_param('ssssi', $_POST['nom'], $_POST['objet'], $_POST['message'], $_POST['inclure_lien'], $_GET['id']);
+		$stmt->bind_param('ssssi', stripslashes($_POST['nom']), stripslashes($_POST['objet']), stripslashes($_POST['message']), $_POST['inclure_lien'], $_GET['id']);
 		$stmt->execute();
 		$stmt->close();
 		
@@ -18,7 +18,7 @@ if($_POST['nom']) {
 	else {
 		$query = 'INSERT INTO courriel SET nom = ?, objet = ?, message = ?';
 		$stmt = $session->MySQL()->Prepare($query);
-		$stmt->bind_param('sss', $_POST['nom'], $_POST['objet'], $_POST['message']);
+		$stmt->bind_param('sss', stripslashes($_POST['nom']), stripslashes($_POST['objet']), stripslashes($_POST['message']));
 		$stmt->execute();
 		$stmt->close();
 		

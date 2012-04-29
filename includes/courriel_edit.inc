@@ -28,9 +28,9 @@ skin_variant : "silver"
 <?php if($row) echo '<input type="hidden" name="id_courriel" value="'.(int)$row['id_courriel'].'" />'; ?>
 <table>
 	<tbody>
-		<tr><td>Nom du courriel :</td><td><input type="text" id="nom" name="nom" value="<?php echo htmlentities($row['nom']); ?>" size="35" /></td></tr>
+		<tr><td>Nom du courriel :</td><td><input type="text" id="nom" name="nom" value="<?php echo htmlentities($row['nom']); ?>" size="80" /></td></tr>
 <tr><td></td><td></td></tr>
-<tr><td>Objet</td><td><input id="objet" name="objet" value="<?php echo htmlentities($row['objet']); ?>" type="text" size="50" /></td></tr>
+<tr><td>Objet</td><td><input id="objet" name="objet" value="<?php echo htmlentities($row['objet']); ?>" type="text" size="80" /></td></tr>
 </tbody>
 </table>
 <script type="text/javascript">
