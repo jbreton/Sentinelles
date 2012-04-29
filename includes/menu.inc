@@ -37,7 +37,7 @@ if($membre && $membre->EstCA()) {
 <a href="liste_membres.php">&gt; Liste des membres</a><br />
 <a href="liste_nouveaux_membres.php">&gt; Nouveaux membres</a><br />
 <a href="liste_encadrements.php">&gt; Liste des activit&eacute;s</a><br />
-<a href="javascript:alert(\'En construction\');">&gt; Administration du site</a><br />
+<a href="administration.php">&gt; Administration du site</a><br />
 <a href="http://www.lessentinelles.com/membreca/index.html">&gt; Documents</a>
 </p>';
 }

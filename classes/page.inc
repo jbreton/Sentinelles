@@ -1,7 +1,7 @@
 <?php
 require_once('classes/mysql.inc');
 require_once('classes/session.inc');
-require_once('classes/membre.inc');
+require_once('classes/membre.inc'); 
 class Page {
   public static function Afficher($contenu) {
       $session = new Session();

@@ -22,11 +22,11 @@ td {
 	border: 1px solid black;
 }
 
-</style></head><body><table><thead><tr><th>Membre</th><th>Parcour</th><th>Pr&eacute;sent</th><th>Absent</th><th></th></tr></thead><tbody>';
+</style></head><body><table><thead><tr><th>Membre</th><th>Parcour</th><th>Date de confirmation</th><th>Pr&eacute;sent</th><th>Absent</th><th></th></tr></thead><tbody>';
 
 $mysql = $session->MySQL();
 
-$query = 'SELECT id_presence, IFNULL(membre.nom, presence.nom) AS nom, IFNULL(membre.prenom, presence.prenom) AS prenom, membre.id_membre, groupe_vitesse.description, est_present
+$query = 'SELECT id_presence, IFNULL(membre.nom, presence.nom) AS nom, IFNULL(membre.prenom, presence.prenom) AS prenom, membre.id_membre, groupe_vitesse.description, est_present, date_confirmation
 FROM presence
 LEFT JOIN groupe_vitesse ON groupe_vitesse.id_groupe_vitesse = presence.id_groupe_vitesse_demande
 LEFT JOIN membre ON membre.id_membre = presence.id_membre
@@ -34,7 +34,7 @@ WHERE presence.id_activite = '.(int)$_GET['id'].' AND participation = "Y"
 ORDER BY groupe_vitesse.description, IFNULL(presence.nom, membre.nom), IFNULL(presence.prenom, membre.prenom);';
 $result = $mysql->Query($query);
 while($row = $result->fetch_assoc()) {
-    echo '<tr><td>'.htmlentities($row['prenom']).' '.htmlentities($row['nom']).($row['id_membre'] != '' ? ' ('.$row['id_membre'].')' : '').'</td><td>'.$row['description'].'</td>';
+    echo '<tr><td>'.htmlentities($row['prenom']).' '.htmlentities($row['nom']).($row['id_membre'] != '' ? ' ('.$row['id_membre'].')' : '').'</td><td>'.$row['description'].'</td><td>'.$row['date_confirmation'].'</td>';
 
     echo '<td><input type="radio" id="present_'.$row['id_presence'].'" name="presence_'.$row['id_presence'].'" value="present" '.($row['est_present'] == 'Y' ? 'checked="checked"' : '').' /><script type="text/javascript">$(\'#present_'.$row['id_presence'].'\').data(\'id\', \''.$row['id_presence'].'\').click(function() { etait_present($(this).data(\'id\')); })</script></td>';
     echo '<td><input type="radio" id="absent_'.$row['id_presence'].'" name="presence_'.$row['id_presence'].'" value="absent" '.($row['est_present'] != 'Y' ? 'checked="checked"' : '').' /><script type="text/javascript">$(\'#absent_'.$row['id_presence'].'\').data(\'id\', \''.$row['id_presence'].'\').click(function() { etait_absent($(this).data(\'id\')); })</script></td>';

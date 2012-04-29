@@ -23,17 +23,17 @@ else{
    {
       if ($_POST['Nomembre'] == '')
       {
-         $query = "insert into presence (participation,id_groupe_vitesse_demande,id_activite,prenom,nom) values('".$_POST['Present']."','" .$_POST['choix_groupe_vitesse']."','" .$_POST['Noactivite']."','" .$_POST['Prenom']."','" .$_POST['Nom']."')" ;
+         $query = "insert into presence (participation,id_groupe_vitesse_demande,id_activite,prenom,nom,date_confirmation) values('".$_POST['Present']."','" .$_POST['choix_groupe_vitesse']."','" .$_POST['Noactivite']."','" .$_POST['Prenom']."','" .$_POST['Nom']."', '".date('Y-m-d H:i:s')."')" ;
       }
       else
       {
-         $query = "insert into presence (participation,id_groupe_vitesse_demande,id_activite,id_membre) values('".$_POST['Present']."','" .$_POST['choix_groupe_vitesse']."','" .$_POST['Noactivite']."','" .$_POST['Nomembre']."')" ;
+         $query = "insert into presence (participation,id_groupe_vitesse_demande,id_activite,id_membre,date_confirmation) values('".$_POST['Present']."','" .$_POST['choix_groupe_vitesse']."','" .$_POST['Noactivite']."','" .$_POST['Nomembre']."', '".date('Y-m-d H:i:s')."')" ;
       }
       
    }
    else   
    {
-      $query = "update presence set participation='".$_POST['Present']."',id_groupe_vitesse_demande='".$_POST['choix_groupe_vitesse']."'";
+      $query = "update presence set participation='".$_POST['Present']."',id_groupe_vitesse_demande='".$_POST['choix_groupe_vitesse']."', date_confirmation = '".date('Y-m-d H:i:s')."'";
       $query.= " where id_presence=".(int)$_POST['Nopresence'].";";
    }
 

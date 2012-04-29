@@ -94,7 +94,7 @@ skin_variant : "silver"
 
 });
 </script>
-<form method="POST" action="fiche_encadrement_edit.php">
+<form method="POST">
 <?php if($row) echo '<input type="hidden" name="id_activite" value="'.(int)$row['id_activite'].'" />'; ?>
 <table>
 	<tbody>
