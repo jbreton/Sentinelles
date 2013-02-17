@@ -14,12 +14,12 @@ if($_POST['Prenom']=="" || $_POST['Nom']=="" || $_POST['Telephonedomicile']=="" 
 }
 if($errors==1) echo $error;
 else{
-   $query = "insert into membre(prenom,nom,telephone_residence,telephone_bureau,telephone_autre,courriel,adresse,ville,code_postal,";
+   $query = "insert into prospect(prenom,nom,telephone_residence,telephone_bureau,telephone_autre,courriel,adresse,ville,code_postal,";
    $query.= "date_naissance,maillot_grandeur,groupe_vitesse,no_assurance_maladie,urgence_nom,urgence_lien,urgence_tel_res,urgence_tel_bur,";
-   $query.= "urgence_tel_autre,referer_par,maillot_remis,dossard_remis,coordonnees_publique) values('".$_POST['Prenom']."','".$_POST['Nom']."','".$_POST['Telephonedomicile']."','".$_POST['Telephonebureau']."','".$_POST['Autretelephone']."','";
+   $query.= "urgence_tel_autre,recrute_par) values('".$_POST['Prenom']."','".$_POST['Nom']."','".$_POST['Telephonedomicile']."','".$_POST['Telephonebureau']."','".$_POST['Autretelephone']."','";
    $query.= $_POST['Courriel']."','".$_POST['Adresse']."','".$_POST['Ville']."','".$_POST['CodePostal']."','".$_POST['Anneenaissance']."-".$_POST['Moisnaissance']."-".$_POST['Journaissance']."','".$_POST['maillot']."',";
    $query.= $_POST['Groupedevitesse'].",'".$_POST['Noassmaladie']."','".$_POST['Personneurgence']."','".$_POST['Lien']."','".$_POST['Telephonedomicilepersonne']."','";
-   $query.= $_POST['Telephonebureaupersonne']."','".$_POST['Telephoneautrepersonne']."','".$_POST['Recrutepar']."','N','N','Y');";
+   $query.= $_POST['Telephonebureaupersonne']."','".$_POST['Telephoneautrepersonne']."','".$_POST['Recrutepar']."');";
 
    $mysql = new MySQL();
    $mysql->Query($query);
@@ -32,7 +32,7 @@ else{
    }
 
    $message = stripslashes(sprintf($message, $_POST['Nom'], $_POST['Prenom'], $_POST['Courriel'], $_POST['Telephonedomicile']));
-   mail("lessentinelles@hotmail.com","Nouvelle inscription",$message,"From: lessentinelles@hotmail.com");
+   mail("lessentinelles@hotmail.com","Nouvelle inscription",$message,"From: Les Sentinelles de la Route <info@lessentinelles.com>\r\nReply-To: lessentinelles@hotmail.com");
 
 
 ?><!-- Contenu de la page remerciement --> Voici les coordonn&eacute;es que vous avez entrer dans le formulaire d&rsquo;inscription.<br>
