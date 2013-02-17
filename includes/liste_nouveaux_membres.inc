@@ -9,9 +9,7 @@ echo '<table><thead><tr><th>Nom</th><th>Courriel</th><th>T&eacute;l&eacute;phone
 
 echo '</tr></thead><tbody>';
 
-$query = 'SELECT id_prospect, nom, prenom, courriel, telephone_residence FROM prospect;';
-
-$query .= ' ORDER BY nom, prenom';
+$query = 'SELECT id_prospect, nom, prenom, courriel, telephone_residence FROM prospect ORDER BY nom, prenom';
 
 $result = $session->MySQL()->Query($query);
 while($row = $result->fetch_assoc()) {
