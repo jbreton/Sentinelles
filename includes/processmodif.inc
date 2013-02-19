@@ -8,19 +8,22 @@ require_once('classes/mysql.inc');
 $errors=0;
 $error="Les erreurs suivantes se sont produites en traitant votre formulaire.<ul>";
 
-if($_POST['Prenom']=="" || $_POST['Nom']=="" || $_POST['Telephonedomicile']==""){
+$mysql = new MySQL();
+$post = $mysql->EscapePost($_POST);
+
+if($post['Prenom']=="" || $post['Nom']=="" || $post['Courriel']=="" || $post['Telephonedomicile']==""){
    $errors=1;
    $error.="<li>Vous n'avez pas remplis un ou plusieurs des champs obligatoires. Veuillez retourner et corriger ces erreurs.";
 }
 if($errors==1) echo $error;
 else{
-   $query = "update membre set prenom='".$_POST['Prenom']."',nom='".$_POST['Nom']."',telephone_residence='".$_POST['Telephonedomicile']."',telephone_bureau='".$_POST['Telephonebureau'];
-   $query.= "',telephone_autre='".$_POST['Autretelephone']."',adresse='".$_POST['Adresse']."',ville='".$_POST['Ville']."',code_postal='".$_POST['CodePostal']."',";
-   $query.= "date_naissance='".$_POST['Anneenaissance']."-".$_POST['Moisnaissance']."-".$_POST['Journaissance']."',maillot_grandeur='".$_POST['maillot']."',groupe_vitesse=".$_POST['Groupedevitesse'];
-   $query.= ",no_assurance_maladie='".$_POST['Noassmaladie']."',urgence_nom='".$_POST['Personneurgence']."',urgence_lien='".$_POST['Lien']."',urgence_tel_res='".$_POST['Telephonedomicilepersonne']."'";
-   $query.= ",urgence_tel_bur='".$_POST['Telephonebureaupersonne']."',urgence_tel_autre='".$_POST['Telephoneautrepersonne']."'";
+   $query = "update membre set prenom='".$post['Prenom']."',nom='".$post['Nom']."', courriel='".$post['Courriel']."',telephone_residence='".$post['Telephonedomicile']."',telephone_bureau='".$post['Telephonebureau'];
+   $query.= "',telephone_autre='".$post['Autretelephone']."',adresse='".$post['Adresse']."',ville='".$post['Ville']."',code_postal='".$post['CodePostal']."',";
+   $query.= "date_naissance='".$post['Anneenaissance']."-".$post['Moisnaissance']."-".$post['Journaissance']."',maillot_grandeur='".$post['maillot']."',groupe_vitesse=".$post['Groupedevitesse'];
+   $query.= ",no_assurance_maladie='".$post['Noassmaladie']."',urgence_nom='".$post['Personneurgence']."',urgence_lien='".$post['Lien']."',urgence_tel_res='".$post['Telephonedomicilepersonne']."'";
+   $query.= ",urgence_tel_bur='".$post['Telephonebureaupersonne']."',urgence_tel_autre='".$post['Telephoneautrepersonne']."'";
    
-   if ($_POST['Coordpublic'] == 'on')
+   if ($post['Coordpublic'] == 'on')
    {
       $query.= ",coordonnees_publique='Y'";
    }
@@ -31,7 +34,7 @@ else{
    
    if ($membre->EstCA())
    {
-      if ($_POST['Maillotremis'] == 'on')
+      if ($post['Maillotremis'] == 'on')
       {
          $query.= ",maillot_remis='Y'";
       }
@@ -40,7 +43,7 @@ else{
          $query.= ",maillot_remis='N'";
       }
 
-      if ($_POST['Dossardremis'] == 'on')
+      if ($post['Dossardremis'] == 'on')
       {
          $query.= ",dossard_remis='Y'";
       }
@@ -50,13 +53,18 @@ else{
       }
    }
    
-   $query.= " where id_membre=".(int)$_POST['Nomembre'].";";
+   if($post['mot_passe'] != '') {
+	  if($post['mot_passe'] == $post['confirmation']) {
+		  $query .= ',mot_passe = "'.$post['mot_passe'].'"';
+	  }
+   }
    
-   $mysql = new MySQL();
+   $query.= " where id_membre=".(int)$post['Nomembre'].";";
+   
    $mysql->Query($query);
 
    if($membre->EstCA()) {
-     $query = 'UPDATE inscription SET cotisation = "'.$_POST['cotisation'].'", formulaire_recu= "'.$_POST['formulaire_recu'].'",cotisation_payee = "'.$_POST['cotisation_payee'].'", date_paye = "'.$_POST['date_paye'].'" WHERE id_membre = '.(int)$_POST['Nomembre'].' AND id_saison = (SELECT id_saison FROM saison WHERE active = "Y");';	
+     $query = 'UPDATE inscription SET cotisation = "'.$post['cotisation'].'", formulaire_recu= "'.$post['formulaire_recu'].'",cotisation_payee = "'.$post['cotisation_payee'].'", date_paye = "'.$post['date_paye'].'" WHERE id_membre = '.(int)$post['Nomembre'].' AND id_saison = (SELECT id_saison FROM saison WHERE active = "Y");';	
      $mysql->Query($query);
    }
 
@@ -67,75 +75,75 @@ else{
 	<table width=70%>
 		<tr>
 			<td>Pr&eacute;nom:<font color="#ff0000">*</font></td>
-			<td><?php echo $_POST['Prenom']; ?></td>
+			<td><?php echo $post['Prenom']; ?></td>
 		</tr>
 		<tr>
 			<td>Nom:<font color="#ff0000">*</font></td>
-			<td><?php echo $_POST['Nom']; ?></td>
+			<td><?php echo $post['Nom']; ?></td>
 		</tr>
 		<tr>
 			<td>T&eacute;l&eacute;phone domicile:<font color="#ff0000">*</font></td>
-			<td><?php echo $_POST['Telephonedomicile']; ?></td>
+			<td><?php echo $post['Telephonedomicile']; ?></td>
 		</tr>
 		<tr>
 			<td>T&eacute;l&eacute;phone bureau:</td>
-			<td><?php echo $_POST['Telephonebureau']; ?></td>
+			<td><?php echo $post['Telephonebureau']; ?></td>
 		</tr>
 		<tr>
 			<td>Autre t&eacute;l&eacute;phone:</td>
-			<td><?php echo $_POST['Autretelephone']; ?></td>
+			<td><?php echo $post['Autretelephone']; ?></td>
 		</tr>
 		<tr>
 			<td>Adresse:</td>
-			<td><?php echo $_POST['Adresse']; ?></td>
+			<td><?php echo $post['Adresse']; ?></td>
 		</tr>
 		<tr>
 			<td>Ville:</td>
-			<td><?php echo $_POST['Ville']; ?></td>
+			<td><?php echo $post['Ville']; ?></td>
 		</tr>
 		<tr>
 			<td>Code Postal:</td>
-			<td><?php echo $_POST['CodePostal']; ?></td>
+			<td><?php echo $post['CodePostal']; ?></td>
 		</tr>
 		<tr>
 			<td>Date de naissance:</td>
-			<td><?php echo $_POST['Anneenaissance']; ?>-<?php echo $_POST['Moisnaissance']; ?>-<?php echo $_POST['Journaissance']; ?></td>
+			<td><?php echo $post['Anneenaissance']; ?>-<?php echo $post['Moisnaissance']; ?>-<?php echo $post['Journaissance']; ?></td>
 		</tr>
 		<tr>
 			<td>Taille du maillot:</td>
-			<td><?php echo $_POST['maillot']; ?></td>
+			<td><?php echo $post['maillot']; ?></td>
 		</tr>
 		<tr>
 			<td>Groupe de vitesse:</td>
-			<td><?php echo $_POST['Groupedevitesse']; ?></td>
+			<td><?php echo $post['Groupedevitesse']; ?></td>
 		</tr>
 		<tr>
 			<td>No ass maladie:</td>
-			<td><?php echo $_POST['Noassmaladie']; ?></td>
+			<td><?php echo $post['Noassmaladie']; ?></td>
 		</tr>
 		<tr>
 			<td>Personne &agrave; contacter en cas d'urgence:</td>
-			<td><?php echo $_POST['Personneurgence']; ?></td>
+			<td><?php echo $post['Personneurgence']; ?></td>
 		</tr>
 		<tr>
 			<td>Lien de parent&eacute; du contact en cas d'urgence:</td>
-			<td><?php echo $_POST['Lien']; ?></td>
+			<td><?php echo $post['Lien']; ?></td>
 		</tr>
 		<tr>
 			<td>T&eacute;l&eacute;phone domicile du contact en cas d'urgence:</td>
-			<td><?php echo $_POST['Telephonedomicilepersonne']; ?></td>
+			<td><?php echo $post['Telephonedomicilepersonne']; ?></td>
 		</tr>
 		<tr>
 			<td>T&eacute;l&eacute;phone bureau du contact en cas d'urgence:</td>
-			<td><?php echo $_POST['Telephonebureaupersonne']; ?></td>
+			<td><?php echo $post['Telephonebureaupersonne']; ?></td>
 		</tr>
 		<tr>
 			<td>Autre t&eacute;l&eacute;phone du contact en cas d'urgence:</td>
-			<td><?php echo $_POST['Telephoneautrepersonne']; ?></td>
+			<td><?php echo $post['Telephoneautrepersonne']; ?></td>
 		</tr>
 	</table>
 	<br>
-	Merci <strong><?php echo $_POST['Prenom']; ?> <?php echo $_POST['Nom']; ?> </strong>, vos informations ont &eacute;t&eacute; sauvegard&eacute;es
+	Merci <strong><?php echo $post['Prenom']; ?> <?php echo $post['Nom']; ?> </strong>, vos informations ont &eacute;t&eacute; sauvegard&eacute;es
         <br /><br /><strong><a href="javascript:void(0);" onclick="window.open('formulaire_inscription.php', '_blank');" style="color: red;">Cliquez ici</a> pour une version imprimable du formulaire d'inscription. </strong>
 <br />Veuillez signer le formulaire et nous le faire parvenir &agrave; l'adresse suivante pour compl&eacute;ter votre inscription :
 <br />

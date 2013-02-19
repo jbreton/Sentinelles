@@ -3,6 +3,7 @@
 class Membre {
 	private $id_membre;
 	private $courriel;
+	private $mot_passe;
 	private $nom;
 	private $prenom;
 	private $est_ca;
@@ -27,7 +28,7 @@ class Membre {
    private $inscription_envoyee;
 
 	public function __construct(MySQL $mysql, $id_membre) {
-	   $query  = 'SELECT membre.id_membre, nom, prenom, courriel, est_ca, cotisation_payee,telephone_residence,telephone_bureau,telephone_autre, ';
+	   $query  = 'SELECT membre.id_membre, nom, prenom, courriel, mot_passe, est_ca, cotisation_payee,telephone_residence,telephone_bureau,telephone_autre, ';
 	   $query .= 'adresse,ville,code_postal,date_naissance,maillot_grandeur,groupe_vitesse,no_assurance_maladie,urgence_nom,urgence_lien, ';
       $query .= 'urgence_tel_res,urgence_tel_bur,urgence_tel_autre,maillot_remis,dossard_remis,coordonnees_publique, est_inscrit, formulaire_recu, id_inscription FROM membre ';
       $query .= 'LEFT JOIN (inscription INNER JOIN saison ON saison.id_saison = inscription.id_saison AND saison.active = "Y") ON inscription.id_membre = membre.id_membre ';
@@ -36,7 +37,7 @@ class Membre {
 		$stmt = $mysql->Prepare($query);
 		$stmt->bind_param('d', $id_membre);
 		$stmt->execute();
-		$stmt->bind_result($id, $nom, $prenom, $courriel, $est_ca, $cotisation_payee,$telephone_residence,$telephone_bureau,$telephone_autre,$adresse,$ville,$code_postal,$date_naissance,$maillot_grandeur,$groupe_vitesse,$no_assurance_maladie,$urgence_nom,$urgence_lien,$urgence_tel_res,$urgence_tel_bur,$urgence_tel_autre,$maillot_remis,$dossard_remis,$coord_public, $est_inscrit, $formulaire_recu, $id_inscription);
+		$stmt->bind_result($id, $nom, $prenom, $courriel, $mot_passe, $est_ca, $cotisation_payee,$telephone_residence,$telephone_bureau,$telephone_autre,$adresse,$ville,$code_postal,$date_naissance,$maillot_grandeur,$groupe_vitesse,$no_assurance_maladie,$urgence_nom,$urgence_lien,$urgence_tel_res,$urgence_tel_bur,$urgence_tel_autre,$maillot_remis,$dossard_remis,$coord_public, $est_inscrit, $formulaire_recu, $id_inscription);
 		if($stmt->fetch()) {
 			$stmt->close();
 
@@ -44,6 +45,7 @@ class Membre {
 			$this->nom = $nom;
 			$this->prenom = $prenom;
 			$this->courriel = $courriel;
+			$this->mot_passe = $mot_passe;
 			$this->est_ca = $est_ca == 'Y';
 			$this->cotisation_payee = $cotisation_payee == 'Y';
          $this->telephone_residence  = $telephone_residence;

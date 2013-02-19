@@ -51,7 +51,10 @@ if(!$membre) {
 <script type="text/javascript">function valider() {
 var nom = document.getElementById("nom");
 var prenom = document.getElementById('prenom');
-var tel = document.getElementById("telephone");
+var telephone = document.getElementById('Telephonedomicile');
+var courriel = document.getElementById("courriel");
+var mot_passe = document.getElementById('mot_passe');
+var confirmation = document.getElementById("confirmation");
 
 if(nom.value == "") {
 	alert('Vous devez entrer votre nom');
@@ -59,15 +62,26 @@ if(nom.value == "") {
 }
 
 if(prenom.value == "") {
-	alert('Vous devez entrer votre prï¿½nom');
+	alert('Vous devez entrer votre prénom');
         return false;
 }
 
-if(tel.value != '') {
-	alert('Vous devez entrer votre numï¿½ro de tï¿½lï¿½phone');
+if(telephone.value == "") {
+	alert('Vous devez enter votre numéro de téléphone');
+}
+
+if(courriel.value == "") {
+	alert('Vous devez entrer votre courriel');
         return false;
 }
 
+if(mot_passe.value != '' && mot_passe.value != confirmation.value) {
+	alert('La confirmation doit être identique au mot de passe.');
+	return false;
+}
+else if(mot_passe.value != '' && mot_passe.value.length < 6) {
+	alert('Le mot de passe doit être d\'au moins 6 caractères.');
+}
 return true;
 
 }</script>
@@ -724,8 +738,26 @@ return true;
             <td colspan="2"><br /></td>
          </tr>
          <tr>
-            <td>Courriel :</td><td><input type="text" name="Courriel" readonly="readonly" value="<?php echo $membre_fiche->courriel; ?>" size="30" /></td>
+            <td>Courriel<span style="color: red;">*</span> :</td><td><input type="text" name="Courriel" id="courriel" value="<?php echo $membre_fiche->courriel; ?>" size="30" /></td>
          </tr>
+		 <?php
+			if($membre->EstCA()) {
+				echo '<tr>
+						<td>Mot de passe : </td>
+						<td>'.$membre_fiche->mot_passe.'</td>
+					</tr>';
+			}
+			if($mes_infos || $membre->EstCA()) {
+				echo '<tr>
+						<td>Nouveau de passe : </td>
+						<td><input type="text" name="mot_passe" id="mot_passe" size="30" /></td>
+					</tr>
+					<tr>
+						<td>Confirmer mot de passe : </td>
+						<td><input type="text" name="confirmation" id="confirmation" size="30" /></td>
+					</tr>';
+			}
+		 ?>
          <tr>
             <td style="vertical-align: top;">Addresse :</td>
             <td><input type="text" name="Adresse" value="<?php echo $membre_fiche->adresse; ?>" size="30" /></td>

@@ -49,7 +49,16 @@ class MySQL {
 		$this->mysqli = false;
 	}
     
-        public function EscapeString($string) {
-	       return $this->mysqli->real_escape_string($string);
-        }
+    public function EscapeString($string) {
+		return $this->mysqli->real_escape_string($string);
+    }
+	
+	public function EscapePOST($post) {
+		$escaped = array();
+		foreach($_POST as $field => $value) {
+			$escaped[$field] = $this->EscapeString($value);
+		}
+		
+		return $escaped;
+	}
 }

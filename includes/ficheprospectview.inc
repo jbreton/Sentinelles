@@ -5,6 +5,8 @@ if(!$membre) {
         return false;
 }
 
+
+require_once('classes/prospect.inc');
    $my_mysql = new MySQL();
    $id_prospect = $_GET['id'];
 
@@ -67,7 +69,7 @@ if(!$membre) {
       </tbody>
    </table>
    <br />
-   <input type="button" value="Retour" onclick="location='liste_membres.php';" />
+   <input type="button" value="Retour" onclick="location='liste_nouveaux_membres.php';" />
    
    <br /><br />
 
