@@ -2,7 +2,7 @@
 <h1>Les Sentinelles de la Route vous souhaitent la bienvenue<h1>
 <table width="64" border="0" cellspacing="0" cellpadding="0" align="right">
 				<tr>
-					<td><img src="images/commanditaires_accueil.gif" alt="" width="225" height="287" align="right" border="0"></td>
+					<td><img src="images/logo_saaq.jpg" alt="" width="250px" align="right" border="0"></td>
 				</tr>
 			</table>
 <script language="javascript">
