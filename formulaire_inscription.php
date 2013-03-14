@@ -26,7 +26,7 @@ if($membre = $session->Start()) {
         echo '<tr><td>Courriel : </td><td style="border-bottom: 1px solid black; min-width: 200px; padding-top: 5px;">'.htmlentities($membre->courriel).'&nbsp;</td></tr>';
 	echo '</tbody></table>';
 
-        echo '<br /><br />Je commande ______ plaque(s) suppl&eacute;mentaire(s) de selle de v&eacute;lo. (2,40$ chacune.  La premi&egrave;re est gratuite.)';
+        echo '<br /><br />Je commande ______ plaque(s) suppl&eacute;mentaire(s) de selle de v&eacute;lo. (2,50$ chacune.  La premi&egrave;re est gratuite.)';
 
         echo '<br /><br />Je, soussign&eacute;(e), reconnais que la pratique du cyclisme comporte l\'existence de dangers, de risques r&eacute;els de blessures et d\'accident graves. Je d&eacute;clare conna&icirc;tre la nature et l\'&eacute;tendue de ces dangers et de ces risques et j\'accepte, librement et volontairement de les courir. De plus, je d&eacute;gage le club &quot;Les Sentinelles de la Route&quot; et ses repr&eacute;sentants de toute responsabilit&eacute; qui pourrait r&eacute;sulter de la pratique du cyclisme dans le cadre des activit&eacute;s organis&eacute;es par le club &quot;Les Sentinelles de la Route&quot; et ses repr&eacute;sentants.
 <br /></br />Signature : _________________________________________________ Date : ______________';
