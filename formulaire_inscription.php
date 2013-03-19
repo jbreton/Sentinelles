@@ -7,7 +7,7 @@ require_once('classes/session.inc');
 $session = new Session();
 if($membre = $session->Start()) {
 	echo '<html><body><center><img src="http://www.lessentinelles.com/sentinelles.gif" alt="" width="246" height="69" border="0" /><br />
-<h2>Inscription &agrave; la saison 2012</h2></center>
+<h2>Inscription &agrave; la saison 2013</h2></center>
 <table><tbody>';
 
         echo '<tr><td>Nom : </td><td style="border-bottom: 1px solid black; min-width: 200px; margin-bottom: 5px;">'.htmlentities($membre->nom).'</td></tr>';

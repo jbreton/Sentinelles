@@ -23,7 +23,7 @@ $t = time();
 $secret = md5($t.'secret des sentinelles');
 $hash = md5($row['courriel'].'inscription saison '.$annee.' sentinelles'.$secret);
 
-$query = 'INSERT INTO inscription_nouvelle_saison SET id_membre = '.(int)$_GET['id_membre'].', hash = "'.$mysql->EscapeString($secret).'", cout = '.(int)$cout.';';
+$query = 'INSERT IGNORE INTO inscription_nouvelle_saison SET id_membre = '.(int)$_GET['id_membre'].', hash = "'.$mysql->EscapeString($secret).'", cout = '.(int)$cout.';';
 $mysql->Query($query);
 
 $email = '<html><body>
