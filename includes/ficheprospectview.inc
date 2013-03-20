@@ -2,7 +2,7 @@
 
 if(!$membre) {
 	include('accueil.inc');
-        return false;
+    return false;
 }
 
 
@@ -63,13 +63,20 @@ require_once('classes/prospect.inc');
                echo "<tr><td>Lien :</td><td>" . $prospect->urgence_lien . "</td></tr>";
                echo "<tr><td>Residence :</td><td>" . $prospect->urgence_tel_res . "</td></tr>";
                echo "<tr><td>Bureau :</td><td>" . $prospect->urgence_tel_bur . "</td></tr>";
-               echo "<tr><td>Autre :</td><td>" . $prospect->urgence_tel_autre . "</td></tr>";
+               echo "<tr><td>Autre :</td><td>" . $prospect->urgence_tel_autre . "</td></tr>";	
          ?>
 
       </tbody>
    </table>
    <br />
    <input type="button" value="Retour" onclick="location='liste_nouveaux_membres.php';" />
+   <br /><br />
+   <input type="button" value="Inscrire" onclick="location='inscrire_prospect.php?id=<?php echo (int)$id_prospect; ?>'" />
+   <input type="button" value="Inscrire et envoyer l'invitation" onclick="location='inscrire_prospect.php?id=<?php echo (int)$id_prospect; ?>&invite=1'" />
+   
+   
+   <br /><br />
+   <input type="button" value="Supprimer" onclick="location='liste_nouveaux_membres.php?delete=<?php echo (int)$id_prospect; ?>'" />
    
    <br /><br />
 

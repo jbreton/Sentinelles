@@ -5,6 +5,17 @@ if(!$membre) {
         return false;
 }
 
+if($_GET['delete']) {
+	if(!$membre || !$membre->EstCA()) {
+		include('accueil.inc');
+		return false;
+	}
+	
+	$session->MySQL()->Query('DELETE FROM prospect WHERE id_prospect='.(int)$_GET['delete']);
+	header('Location: liste_nouveaux_membres.php');
+	return false;
+}
+
 echo '<table><thead><tr><th>Nom</th><th>Courriel</th><th>T&eacute;l&eacute;phone</th>';
 
 echo '</tr></thead><tbody>';

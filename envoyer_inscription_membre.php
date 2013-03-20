@@ -43,8 +43,8 @@ $email .= '
 <p class="p1"><strong>Pour vous inscrire, ce sera la m&ecirc;me proc&eacute;dure que l&rsquo;an dernier :</strong></p>
 <ul class="ul1">
 <li class="li4"><span class="s1">Suivez le lien suivant&nbsp;:&nbsp;<a href="http://www.lessentinelles.com/confirmation_inscription.php?h='.$hash.'&t='.$t.'"><span class="s2">http://www.lessentinelles.com/confirmation_inscription.php?h='.$hash.'&t='.$t.'</span></a>;</span></li>
-<li>Complétez votre fiche et imprimez le <span style="color: red;">document de renonciation</span> au bas de la page;</li>
-<li><span style="font-weight: bold; color: red;">Signez et postez le document de renonciation, accompagné du paiement de votre inscription à l&apos;adresse postale du club :</span></li>
+<li>ComplÃ©tez votre fiche et imprimez le <span style="color: red;">document de renonciation</span> au bas de la page;</li>
+<li><span style="font-weight: bold; color: red;">Signez et postez le document de renonciation, accompagnÃ© du paiement de votre inscription Ã  l&apos;adresse postale du club :</span></li>
 </ul>
 <p class="p1"><strong>Adresse postale:</strong><br /> Les Sentinelles de la Route<br /> C.P. 9802, Succ. postale Ste-Foy<br /> Qu&eacute;bec (Qu&eacute;bec)<br /> G1V 4C3</p>
 <p class="p3">L&rsquo;an dernier tous les membres en r&egrave;gle ont re&ccedil;u gratuitement une plaque&nbsp;personnalis&eacute;e&nbsp;pour selle de v&eacute;lo. Cette ann&eacute;e <strong>seulement</strong> les nouveaux membres en r&egrave;gle recevront une plaque gratuitement. Pour les nouveaux et les anciens membres, il sera possible de commander des plaques&nbsp;suppl&eacute;mentaires&nbsp;au co&ucirc;t de 2,50 $ chacune (taxes incluses), payable lors de la soir&eacute;e d&rsquo;ouverture.&nbsp;Pour que vous puissiez prendre possession de votre plaque de selle lors de la soir&eacute;e d&rsquo;ouverture, il faudra que vous nous fassiez parvenir votre inscription avant le 31 mars.</p>
