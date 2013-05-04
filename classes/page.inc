@@ -27,9 +27,9 @@ class Page {
 <title>Les Sentinelles de la Route</title>
 <script language="javascript">AC_FL_RunContent = 0;</script>
 <script src="AC_RunActiveContent.js" language="javascript"></script>
-<script src="lib/js/jquery-1.5.min.js" type="text/javascript"></script>
-<link type="text/css" href="lib/css/blitzer/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
-<script type="text/javascript" src="lib/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script src="lib/js/jquery-1.9.1.js" type="text/javascript"></script>
+<link type="text/css" href="lib/css/blitzer/jquery-ui-1.10.3.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="lib/js/jquery-ui-1.10.3.custom.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link href="style.css" rel="stylesheet" media="screen" />
 
